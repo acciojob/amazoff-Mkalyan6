@@ -157,6 +157,9 @@ public class OrderRepository {
               List<Order>list=OrderPartnerMap.get(deliveryPartnerId);
               Order orderObject=OrderList.remove(orderId);
               list.remove(orderObject);
+              //After Deleting the order from the list, have to decrement the count of orders for delivery person
+              int countOfOrdersforDeliveryPerson=PartnerList.get(deliveryPartnerId).getNumberOfOrders();
+              PartnerList.get(deliveryPartnerId).setNumberOfOrders(countOfOrdersforDeliveryPerson-1);
 
           }else{
               OrderList.remove(orderId);
